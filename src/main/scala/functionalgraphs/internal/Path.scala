@@ -1,5 +1,7 @@
 package functionalgraphs.internal
 
+import collection.mutable.LinkedList
+
 /**
  * Created by IntelliJ IDEA.
  * User: piyush
@@ -10,5 +12,12 @@ package functionalgraphs.internal
 
 class Path
 {
-  val nodes = List()
+  var nodes = new LinkedList[Node]()
+
+  def addNode(n : Node)
+  {
+    nodes = nodes :+ n
+  }
+
+  def getNodes = nodes
 }

@@ -1,4 +1,4 @@
-package functional-graphs;
+package functionalgraphs;
 
 import junit.framework._;
 import Assert._;
