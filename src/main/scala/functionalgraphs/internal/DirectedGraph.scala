@@ -29,20 +29,15 @@ class DirectedGraph {
 
   def findWeightOfPath(path: Path): Int = {
     val pathNodes = path.getNodes
-    var w = 0
-    for (i <- 0 until pathNodes.size - 1)
-    {
-       findEdgeForAPairOfNodes(pathNodes(i), pathNodes(i+1)) match
-       {
-         case Some(e) => w += e.getWeight
-         case None => return -1
-       }
-    }
-    return w
+    return pathNodes.sliding(2).foldLeft(0)(weight)
   }
 
-  def findEdgeForAPairOfNodes(n1: Node, n2: Node) : Option[Edge] =
+  def weight(w: Int, list: LinkedList[Node]) : Int =
   {
-     edges.find((e:Edge) => (e.getN1.equals(n1) && e.getN2.equals(n2)))
+     edges.find((e:Edge) => (e.getN1.equals(list(0)) && e.getN2.equals(list(1)))) match
+     {
+       case Some(e) => return w + e.getWeight
+       case None => return Integer.MIN_VALUE
+     }
   }
 }
