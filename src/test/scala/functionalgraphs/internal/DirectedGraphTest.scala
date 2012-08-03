@@ -54,7 +54,7 @@ class DirectedGraphTest extends TestCase("app") {
     path.addNode(B)
     path.addNode(C)
 
-    val weight = graph.findWeightOfPath(path)
+    val weight = DirectedGraphOperations.findWeightOfPath(path, graph.getNodes, graph.getEdges)
     assertEquals(7, weight)
   }
 }

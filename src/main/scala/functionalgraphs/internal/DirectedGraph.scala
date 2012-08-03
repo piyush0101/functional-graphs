@@ -13,31 +13,6 @@ class DirectedGraph {
     edges = edges :+ edge
   }
 
-  def adjacencyMatrix(): Array[Array[Int]] = {
-    val adjacencyMatrix: Array[Array[Int]] = Array.fill[Int](nodes.size, nodes.size) {
-      Integer.MAX_VALUE
-    }
-
-    for (i <- 0 to nodes.size) {
-      for (j <- 0 to edges.size if edges(j).getN1.equals(nodes(i))) {
-        adjacencyMatrix(i).update(nodes.indexWhere(_.equals(edges(j).getN2)), edges(j).getWeight)
-      }
-    }
-
-    return adjacencyMatrix
-  }
-
-  def findWeightOfPath(path: Path): Int = {
-    val pathNodes = path.getNodes
-    return pathNodes.sliding(2).foldLeft(0)(weight)
-  }
-
-  def weight(w: Int, list: LinkedList[Node]) : Int =
-  {
-     edges.find((e:Edge) => (e.getN1.equals(list(0)) && e.getN2.equals(list(1)))) match
-     {
-       case Some(e) => return w + e.getWeight
-       case None => return Integer.MIN_VALUE
-     }
-  }
+  def getNodes = nodes.toList
+  def getEdges = edges.toList
 }
